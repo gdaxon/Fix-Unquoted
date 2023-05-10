@@ -6,7 +6,7 @@ $BlackList = $Null
 #Create an ArrayList to store results in
 $Values = New-Object System.Collections.ArrayList
 #Discovers all registry keys under the base keys
-$DiscKeys = Get-ChildItem -Recurse -Directory $BaseKeys -Exclude $BlackList -ErrorAction SilentlyContinue |
+$DiscKeys = Get-ChildItem -Recurse $BaseKeys -Exclude $BlackList -ErrorAction SilentlyContinue |
             Select-Object -ExpandProperty Name | %{($_.ToString().Split('\') | Select-Object -Skip 1) -join '\'}
 #Open the local registry
 $Registry = [Microsoft.Win32.RegistryKey]::OpenBaseKey('LocalMachine', 'Default')
